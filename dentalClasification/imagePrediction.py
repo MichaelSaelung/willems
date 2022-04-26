@@ -20,18 +20,19 @@ def imagePrediction(REGION = region.CANINE):
 # mencari Nilai klasifikasi dari gigi berdasarkan constantan perempuan atau laki2 dalam region yang sama
 def imageClasification(gender, region, y_pred=None):
     with open(constan.TOOTH_JSON_PATH, 'r') as file:
-        toohNumber = json.load(file)
-        toohNumber = toohNumber[gender][region][y_pred] if y_pred is not None else 0.00
+        toothNumber = json.load(file)
+        gender = "boy" if constan.gender.MALE == gender else "girl"
+        toothNumber = toothNumber[gender][region][y_pred] if y_pred is not None else 0.00
         with open(constan.RESULT_JSON_PATH, 'r') as file:
             try: 
                 Tooth = json.load(file) 
             except: 
                 Tooth = {}
             
-            Tooth[region] = toohNumber
+            Tooth[region] = toothNumber
             with open(constan.RESULT_JSON_PATH, 'w') as file: 
                 json.dump(Tooth, file)    
-    return toohNumber
+    return toothNumber
 
 def agePrediction():
     with open(constan.RESULT_JSON_PATH, 'r') as file:

@@ -12,14 +12,15 @@ global REGION, GENDER
 button_dict, imgREGIONS, lbl, lbl_value = {}, {}, {}, {}
 fontDecoration = f'arial 10 bold'
 WIDTH, HEIGHT = 1200, 800
-REGION, GENDER = region.CANINE, gender.MALE
-REGIONS = [ region.CANINE,
-            region.CENTRAL_INCISOR, 
-            region.FIRST_MOLAR,
-            region.FIRST_PREMOLAR,
+GENDER = gender.MALE
+REGIONS = [ region.CENTRAL_INCISOR,
             region.LATERAL_INCISOR,
-            region.SECOND_MOLAR,
-            region.SECOND_PREMOLAR ]
+            region.CANINE, 
+            region.FIRST_PREMOLAR,
+            region.SECOND_PREMOLAR,
+            region.FIRST_MOLAR,
+            region.SECOND_MOLAR ]
+REGION = REGIONS[0] #region.CENTRAL_INCISOR
 
 root = Tk()
 root.title(f'{pesan.TITLE}')

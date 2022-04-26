@@ -30,17 +30,17 @@ class buttonLabel():
     RESET_IMAGE =   'Reset'
 
 class region():
-    CANINE =          'Canine'
     CENTRAL_INCISOR = 'Central Incisor'
-    FIRST_MOLAR =     'First Molar'
-    FIRST_PREMOLAR =  'First Premolar'
     LATERAL_INCISOR = 'Lateral Incisor'
-    SECOND_MOLAR =    'Second Molar'
+    CANINE =          'Canine'
+    FIRST_PREMOLAR =  'First Premolar'
     SECOND_PREMOLAR = 'Second Premolar'
+    FIRST_MOLAR =     'First Molar'
+    SECOND_MOLAR =    'Second Molar'
 
 class gender():
-    MALE =   'boy'
-    FEMALE = 'girl'
+    MALE =   'laki-laki'
+    FEMALE = 'perempuan'
 
 class pesan():
     SIMPAN_STAGE = 'Simpan stage ini sebagai Region '
@@ -73,20 +73,20 @@ class pesan():
     MIN_THRESHOLD = 'Min Predict : '
     TOOTH = """
                                  A      B     C     D     E     F     G     H
-    BOYS  : Canine           :   0.00   0.00  0.00  0.04  0.31  0.47  1.09  1.90
-            Central Incisor  :   0.00   0.00  1.68  1.49  1.50  1.86  2.07  2.19
-            First Molar      :   0.00   0.00  0.00  0.69  1.14  1.60  1.95  2.15
-            First Premolar   :   0.15   0.56  0.75  1.11  1.48  2.03  2.43  2.83
+    BOY  :  Central Incisor  :   0.00   0.00  1.68  1.49  1.50  1.86  2.07  2.19
             Lateral Incisor  :   0.00   0.00  0.55  0.63  0.74  1.08  1.32  1.64
-            Second Molar     :   0.18   0.48  0.71  0.80  1.31  2.00  2.48  4.17
+            Canine           :   0.00   0.00  0.00  0.04  0.31  0.47  1.09  1.90
+            First Premolar   :   0.15   0.56  0.75  1.11  1.48  2.03  2.43  2.83
             Second Premolar  :   0.08   0.05  0.12  0.27  0.33  0.45  0.40  1.15
-    GIRLS : Canine           :   0.00   0.00  0.60  0.54  0.62  1.08  1.72  2.00
-            Central Incisor  :   0.00   0.00  1.83  2.19  2.34  2.82  3.19  3.14
-            First Molar      :   0.00   0.00  0.00  0.62  0.90  1.56  1.82  2.21
-            First Premolar   :  -0.95  -0.15  0.16  0.41  0.60  1.27  1.58  2.19
+            First Molar      :   0.00   0.00  0.00  0.69  1.14  1.60  1.95  2.15
+            Second Molar     :   0.18   0.48  0.71  0.80  1.31  2.00  2.48  4.17
+    GIRL :  Central Incisor  :   0.00   0.00  1.83  2.19  2.34  2.82  3.19  3.14
             Lateral Incisor  :   0.00   0.00  0.00  0.29  0.32  0.49  0.79  0.90
-            Second Molar     :   0.14   0.11  0.21  0.32  0.66  1.28  2.09  4.04
+            Canine           :   0.00   0.00  0.60  0.54  0.62  1.08  1.72  2.00
+            First Premolar   :  -0.95  -0.15  0.16  0.41  0.60  1.27  1.58  2.19
             Second Premolar  :  -0.19   0.01  0.27  0.17  0.35  0.35  0.55  1.51
+            First Molar      :   0.00   0.00  0.00  0.62  0.90  1.56  1.82  2.21
+            Second Molar     :   0.14   0.11  0.21  0.32  0.66  1.28  2.09  4.04
             """
     PROFILE = """
     Nama         : Michael Saelung Sinambela
