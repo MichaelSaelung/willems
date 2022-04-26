@@ -1,7 +1,7 @@
 import os
 
 path = os.getcwd()
-path = '/home/ronal/Documents/WIILLEMS'
+path = '/home/ronal/Documents/willems'
 #TODO
 
 DATASET_FOLDER =os.path.normpath(path+'/datasetImg') + '/'
