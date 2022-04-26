@@ -249,11 +249,12 @@ lblMinResult = Label(left_result_frame, text=f'{pesan.MIN_THRESHOLD}0.0', font=f
 lblMinResult.grid(row=3, column=0, sticky=W,pady=(0,10))
 
 #======================================================================
-# komen line kode dibawah ini jika ingin menampilkan tab menu
+#                       Show/Hide TabMenu
 #======================================================================
-#frameStatus.destroy()      # Tab Status
-#frameInformation.destroy() # Tab Infnforamtion
-frameProfile.destroy()     # Tab Profile
+
+if(constan.hideFrame.hideFrameStatus): frameStatus.destroy()      # Tab Status
+if(constan.hideFrame.hideFrameInformation): frameInformation.destroy() # Tab Infnforamtion
+if(constan.hideFrame.hideFrameProfile): frameProfile.destroy()     # Tab Profile
 
 
 #=============================================================

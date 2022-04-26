@@ -42,6 +42,12 @@ class gender():
     MALE =   'laki-laki'
     FEMALE = 'perempuan'
 
+# Show/Hide TabMenu
+class hideFrame():
+    hideFrameStatus = False
+    hideFrameInformation = False
+    hideFrameProfile = True
+
 class pesan():
     SIMPAN_STAGE = 'Simpan stage ini sebagai Region '
     ERR_KESALAHAN = 'Terjadi Kesalahan!'
