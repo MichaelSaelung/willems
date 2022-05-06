@@ -24,9 +24,9 @@ EPOCHS = 5
 
 class buttonLabel():
     LOAD_IMAGE =    'Load Image'
-    CROP_IMAGE =    'Crop'
-    SELECT_REGION = 'Select Tooth'
-    PREDICT =       'Estimate'
+    CROP_IMAGE =    'Region'
+    SELECT_REGION = 'Pilih Gigi'
+    PREDICT =       'Estimasi'
     RESET_IMAGE =   'Reset'
 
 class region():
@@ -39,8 +39,8 @@ class region():
     SECOND_MOLAR =    'Second Molar'
 
 class gender():
-    MALE =   'laki-laki'
-    FEMALE = 'perempuan'
+    MALE =   'Laki-Laki'
+    FEMALE = 'Perempuan'
 
 # Show/Hide TabMenu
 class hideFrame():
@@ -51,10 +51,10 @@ class hideFrame():
 class pesan():
     SIMPAN_STAGE = 'Simpan stage ini sebagai Region '
     ERR_KESALAHAN = 'Terjadi Kesalahan!'
-    LABEL_MESSAGE = 'Status         : '
-    LABEL_IMAGE_PATH = 'Path           : '
-    LABEL_STATUS_PROCESS = 'Status Process : '
-    LABEL_STATUS_PREDICT = 'Status Predict : '
+    LABEL_MESSAGE = 'Status          : '
+    LABEL_IMAGE_PATH = 'Path            : '
+    LABEL_STATUS_PROCESS = 'Status Process  : '
+    LABEL_STATUS_PREDICT = 'Status Estimasi : '
     FRAME_STATUS = 'Status'
     FRAME_INFORMATION = 'Information'
     FRAME_PROFILE = 'Profile'
@@ -66,17 +66,20 @@ class pesan():
     BUTTON_MOVE = 'Mouse Move x : '
     BUTTON_RELEASE = 'Mouse Release'
     SAVE_IMAGE = 'Save Image'
+    SAVE_REGION = 'Tooth {} Selected'
+    SAVE_CROP = 'Region Crop Finish'
     IMAGE = 'Image'
     UMUR = '\n\nTahun'
     SELECTED = 'Selected'
-    PREDICT1 = 'Mencoba Memprediksi '
-    PREDICT2 = 'Berhasil memprediksi'
-    FINAL_RESULT= 'Prediksi Berhasil {} dengan umur {} tahun'
-    SELECT = 'Select'
-    CROP = 'Crop'
-    THRESHOLD = 'Deviation   : '
+    PREDICT1 = 'Mencoba Mengestimasi '
+    PREDICT2 = 'Berhasil Mengestimasi'
+    FINAL_RESULT = 'Anak {} dengan umur {} tahun'
+    SELECT = 'Select Gambar'
+    CROP = 'Crop Gambar'
+    THRESHOLD = 'Deviasi   : '
     MAX_THRESHOLD = 'Max Predict : '
     MIN_THRESHOLD = 'Min Predict : '
+    COPY_RIGHT = 'Copyright © Michael Saelung 2022'
     TOOTH = """
                                  A      B     C     D     E     F     G     H
     BOY  :  Central Incisor  :   0.00   0.00  1.68  1.49  1.50  1.86  2.07  2.19

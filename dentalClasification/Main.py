@@ -43,6 +43,8 @@ def openAndPut():
         try: os.remove(f'{constan.PATH_TESTING}{REGIONS[x]}{constan.IMAGE_TYPE}')
         except: pass
     imagetRegion() 
+    status(message =f'{pesan.CREATE_IMAGE}', imgaePath = path)
+
     openImage(path)
 
 def resetImage():
@@ -50,7 +52,6 @@ def resetImage():
     openImage(_path)
 
 def openImage(path):
-    status(message =f'{pesan.CREATE_IMAGE}', imgaePath = path)
     global image, cropImage
     width, height = round(WIDTH * 0.75), round(HEIGHT * 0.75)
     if path:
@@ -83,20 +84,21 @@ def buttonRelease(event):
     if  Status == pesan.SELECT:
         res = messagebox.askquestion('askquestion', pesan.SIMPAN_STAGE+REGION)
         if res == 'yes':
-            saveImage(REGION)        
+            saveImage(REGION)    
+            status(message = pesan.SAVE_REGION.format(REGION))    
             imagetRegion()
         elif res == 'no': pass
         else: messagebox.showwarning('error', pesan.ERR_KESALAHAN)
         image_area.delete(rect) #hapus kotak di gambar
     elif Status == pesan.CROP:
         path = saveImage(constan.CROP_FILE_NAME)  
+        status(message =f'{pesan.SAVE_CROP}', imgaePath = path)
         openImage(path)
 
-    status(message =f'{pesan.BUTTON_RELEASE}')
+    #status(message =f'{pesan.BUTTON_RELEASE}')
 
 def saveImage(fileName, showImage=False):
     path = f'{constan.PATH_TESTING}{fileName}{constan.IMAGE_TYPE}'
-    status(message =f'{pesan.SAVE_IMAGE}', imgaePath = path)
     imageCrop = cropImage.crop((start_x, start_y, curX, curY))
     imageCrop.save(path)
     if showImage: imageCrop.show()
@@ -105,7 +107,8 @@ def saveImage(fileName, showImage=False):
 def selectArea(_status):
     global Status 
     Status = _status
-    status(f'{Status} {pesan.IMAGE}')
+    #status(f'{Status} {pesan.IMAGE}')
+    status(f'{Status}')
     image_area.bind('<ButtonPress-1>', buttonPress)
     image_area.bind('<B1-Motion>', buttonMove)
     image_area.bind('<ButtonRelease-1>', buttonRelease)
@@ -127,8 +130,13 @@ def boysGirls():
 
 #=============================================================
 #             Digunakan Untuk Prediksi
-#=============================================================      
+#=============================================================   
+   
+
 def predict():
+    root.config(cursor="watch")
+    root.update()
+    status(message =f'{buttonLabel.PREDICT}')
     for region in REGIONS:
         status(StatusProcess = f'{pesan.PREDICT1} {region}')
         imagePred = imagePredict.imagePrediction(region)
@@ -140,9 +148,10 @@ def predict():
 def finalResult():
     result = imagePredict.agePrediction()
     lblResult.configure(text=f'{round(result):.1f}')
-    lblMaxResult.configure(text=f'{round(result + constan.THRESHOLD):.1f}')
-    lblMinResult.configure(text=f'{round(result - constan.THRESHOLD):.1f}')
+    #lblMaxResult.configure(state='disabled', text=f'{round(result + constan.THRESHOLD):.1f}')
+    #lblMinResult.configure(state='disabled', text=f'{round(result - constan.THRESHOLD):.1f}')
     status(StatusPredict = pesan.FINAL_RESULT.format(GENDER,result)) 
+    root.config(cursor="")
 
 def resultLabelValue():
     dictResult = readJson(constan.RESULT_JSON_PATH)
@@ -162,6 +171,7 @@ def status(message=None, imgaePath=None, StatusPredict=None,StatusProcess=None):
     if imgaePath is not None: lblImagePath.configure(text=f'{pesan.LABEL_IMAGE_PATH}{imgaePath}')
     if StatusPredict is not None: lblStatusPredict.configure(text=f'{pesan.LABEL_STATUS_PREDICT}{StatusPredict}')
     if StatusProcess is not None: lblStatusProcess.configure(text=f'{pesan.LABEL_STATUS_PROCESS}{StatusProcess}')
+    return True
 
 
 #=================================================================================================================
@@ -178,6 +188,8 @@ def status(message=None, imgaePath=None, StatusPredict=None,StatusProcess=None):
 left_frame = Frame(root, width=WIDTH * 0.18, height=HEIGHT * 1, highlightbackground='white', highlightthickness=1)
 left_region_frame = Frame(left_frame, width=int(WIDTH * 0.014), highlightbackground='white', highlightthickness=0.5)
 left_result_frame = Frame(left_frame, width=int(WIDTH * 0.014), highlightbackground='white', highlightthickness=0.5)
+left_copyright_frame = Frame(left_frame, width=int(WIDTH * 0.014))
+
 left_crop_reset_frame = Frame(left_frame, width=int(WIDTH * 0.014))
 left_girls_boys_frame = Frame(left_frame, width=int(WIDTH * 0.014))
 right_frame = Frame(root, width=WIDTH * 0.83, height=HEIGHT * 1)
@@ -194,6 +206,8 @@ left_crop_reset_frame.grid(row=1, column=0, sticky='nsew',padx=(10,10), pady=5)
 left_girls_boys_frame.grid(row=3, column=0, sticky='nsew',padx=(10,10), pady=5)
 left_region_frame.grid(row=5, column=0, sticky='nsew',padx=(10,10), pady=20)
 left_result_frame.grid(row=6, column=0, sticky='nsew',padx=(10,10))
+left_copyright_frame.grid(row=7, column=0, sticky='nsew',padx=(0,0), pady=30)
+
 right_frame.grid(row=0, column=1, sticky='nsew')
 right_top_frame.grid(row=0, column=0, sticky='nsew')
 right_bottom_frame.grid(row=1, column=0, sticky='nsew')
@@ -241,12 +255,16 @@ lblResult = Label(left_result_frame, text=f'0.0', font=f'arial 40 bold',highligh
 lblResult.grid(row=0, column=0, sticky=W)
 lblTahun = Label(left_result_frame, text=f'{pesan.UMUR}', font=fontDecoration,highlightthickness=2)
 lblTahun.grid(row=0, column=1, sticky=W)
-lblTareshold = Label(left_result_frame, text=f'{pesan.THRESHOLD}{constan.THRESHOLD}', font=fontDecoration,highlightthickness=2)
-lblTareshold.grid(row=1, column=0, sticky=W)
-lblMaxResult = Label(left_result_frame, text=f'{pesan.MAX_THRESHOLD}0.0', font=fontDecoration,highlightthickness=2)
-lblMaxResult.grid(row=2, column=0, sticky=W)
-lblMinResult = Label(left_result_frame, text=f'{pesan.MIN_THRESHOLD}0.0', font=fontDecoration,highlightthickness=2)
+lblDeviation = Label(left_result_frame, text=f'{pesan.THRESHOLD}{constan.THRESHOLD}', font=fontDecoration,highlightthickness=2)
+lblDeviation.grid(row=1, column=0, sticky=W)
+#lblMaxResult = Label(left_result_frame, text=f'{pesan.MAX_THRESHOLD}0.0', font=fontDecoration,highlightthickness=2)
+#lblMaxResult.grid(row=2, column=0, sticky=W)
+#lblMinResult = Label(left_result_frame, text=f'{pesan.MIN_THRESHOLD}0.0', font=fontDecoration,highlightthickness=2)
+lblMinResult = Label(left_result_frame, text=f'', font=fontDecoration,highlightthickness=2)
 lblMinResult.grid(row=3, column=0, sticky=W,pady=(0,10))
+
+copyright = Label(left_copyright_frame, text=f'{pesan.COPY_RIGHT}', font=f'arial 8',highlightthickness=2)
+copyright.grid(row=0, column=0, sticky=W,pady=(170,10))
 
 #======================================================================
 #                       Show/Hide TabMenu
